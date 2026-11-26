@@ -293,3 +293,21 @@ h1, h2, h3 { font-family: var(--display); margin: 0; letter-spacing: -.02em; lin
 @media (max-width: 700px) { .compare { aspect-ratio: 4/3; } }
 .compare .v3 .ph { padding-inline-end: 50%; }
 .compare .v2 .ph { padding-inline-start: 50%; }
+
+/* ---------- header brand: name with title underneath ---------- */
+.brand { display: flex; flex-direction: column; line-height: 1.15; gap: .15rem; }
+.brand-name { font-family: var(--display); font-weight: 800; font-size: 1.3rem; display: inline-flex; align-items: center; gap: .45rem; }
+.brand-name::before { content: ""; width: .62em; height: .62em; border-radius: 50%; background: var(--sun); border: 1.5px solid var(--ink); flex: none; }
+.brand-title { font-family: var(--body); font-weight: 500; font-size: .8rem; color: var(--ink-soft); }
+.lang-pill { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.lang-pill:hover { background: var(--sun); color: var(--ink); border-color: var(--sun); }
+@media (max-width: 760px) { .nav .lang-pill { display: inline-flex; } .brand-title { font-size: .72rem; } }
+.media-item .pic.video { aspect-ratio: 16/9; background: var(--ink); }
+.media-item .pic.video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+button.yt { display: block; width: 100%; padding: 0; border: 0; cursor: pointer; }
+button.yt img { width: 100%; height: 100%; object-fit: cover; }
+button.yt .play { position: absolute; inset: 0; margin: auto; width: 68px; height: 68px; border-radius: 50%; background: var(--sun); box-shadow: 0 8px 20px rgba(0,0,0,.3); transition: transform .2s; }
+button.yt .play::after { content: ""; position: absolute; inset: 0; margin: auto; width: 0; height: 0; border-style: solid; border-width: 12px 0 12px 20px; border-color: transparent transparent transparent var(--ink); transform: translateX(3px); }
+button.yt:hover .play, button.yt:focus-visible .play { transform: scale(1.08); }
+button.yt .play { inset: auto; bottom: .9rem; inset-inline-start: .9rem; margin: 0; width: 52px; height: 52px; }
+button.yt .play::after { border-width: 10px 0 10px 16px; }

@@ -22,12 +22,29 @@
     works.forEach(w => { w.hidden = !(cat === 'all' || w.dataset.cat.split(' ').includes(cat)); });
   }));
 
-  // Peel: the client's request over the learner questions
-  const peel = document.getElementById('peel');
-  if (peel) {
+  // Reveal sliders: drag the handle to uncover the layer underneath
+  document.querySelectorAll('.peel').forEach(peel => {
     const s = peel.querySelector('.slider');
     const set = v => peel.style.setProperty('--cut', v + '%');
     s.addEventListener('input', () => set(s.value));
     set(s.value);
+  });
+
+  // Respect reduced motion: don't autoplay gameplay clips
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('video[autoplay]').forEach(v => { v.removeAttribute('autoplay'); v.pause(); });
   }
+
+  // YouTube: show the video's opening frame, load the player only on click
+  document.querySelectorAll('button.yt').forEach(b => b.addEventListener('click', () => {
+    const f = document.createElement('iframe');
+    f.src = 'https://www.youtube-nocookie.com/embed/' + b.dataset.id + '?autoplay=1&rel=0';
+    f.title = b.getAttribute('aria-label');
+    f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+    f.allowFullscreen = true;
+    const wrap = document.createElement('div');
+    wrap.className = 'pic video';
+    wrap.appendChild(f);
+    b.replaceWith(wrap);
+  }));
 }
