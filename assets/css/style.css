@@ -311,3 +311,9 @@ button.yt .play::after { content: ""; position: absolute; inset: 0; margin: auto
 button.yt:hover .play, button.yt:focus-visible .play { transform: scale(1.08); }
 button.yt .play { inset: auto; bottom: .9rem; inset-inline-start: .9rem; margin: 0; width: 52px; height: 52px; }
 button.yt .play::after { border-width: 10px 0 10px 16px; }
+
+/* course steps: all six in one row on wide screens */
+@media (min-width: 1000px) {
+  .steps { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: .6rem; }
+  .steps li { flex-direction: column; justify-content: flex-start; text-align: center; gap: .55rem; padding: 1rem .55rem 1.1rem; font-size: .95rem; line-height: 1.35; }
+}
